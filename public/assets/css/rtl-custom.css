@@ -1,0 +1,43 @@
+/* rtl-custom.css */
+
+body {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Cairo', sans-serif;
+  }
+  
+  .menu-inner {
+    text-align: right;
+  }
+  
+  .layout-menu {
+    right: 0 !important;
+    left: auto !important;
+  }
+  
+  .layout-page {
+    margin-right: 260px !important;
+    margin-left: 0 !important;
+  }
+  
+  .navbar-nav {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+  }
+  
+  .dropdown-menu {
+    text-align: right;
+  }
+  
+  .card-body, .card-header, .card-footer {
+    text-align: right;
+  }
+  
+  .breadcrumb {
+    justify-content: flex-end;
+  }
+  
+  .table td, .table th {
+    text-align: right;
+  }
+  
