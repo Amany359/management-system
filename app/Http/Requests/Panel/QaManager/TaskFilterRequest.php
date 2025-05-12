@@ -18,7 +18,7 @@ class TaskFilterRequest extends FormRequest
     {
         return [
             'status' => 'nullable|in:pending,in_progress,completed,approved',
-            'assigned_to' => 'nullable|exists:users,id',
+            'tester_id' => 'nullable|exists:users,id',
         ];
     }
 }

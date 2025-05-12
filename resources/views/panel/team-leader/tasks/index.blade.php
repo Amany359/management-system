@@ -1,17 +1,21 @@
 @extends('panel.layouts.master')
 
 @section('content')
-<div class="container">
-    <h2>مهام هذا الأسبوع</h2>
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-primary">مهام هذا الأسبوع</h2>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <a href="{{ route('team_leader.tasks.create') }}" class="btn btn-primary mb-3">إضافة مهمة جديدة</a>
+    <!-- زر إضافة مهمة جديدة -->
+    <div class="mb-3 text-end">
+        <a href="{{ route('team_leader.tasks.create') }}" class="btn btn-lg btn-outline-primary">إضافة مهمة جديدة</a>
+    </div>
 
-    <table class="table table-bordered">
-        <thead>
+    <!-- جدول المهام -->
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
             <tr>
                 <th>العنوان</th>
                 <th>المبرمج</th>
@@ -28,10 +32,19 @@
                     <td>{{ $task->title }}</td>
                     <td>{{ $task->programmer?->name }}</td>
                     <td>{{ $task->tester?->name ?? 'غير معيّن' }}</td>
-                    <td>{{ $task->status }}</td>
+                    <td>
+                        <span class="badge 
+                                    @if($task->status == 'مكتملة') badge-success 
+                                    @elseif($task->status == 'قيد التنفيذ') badge-warning
+                                    @elseif($task->status == 'قيد الانتظار') badge-secondary
+                                    @else badge-danger @endif">
+                            {{ $task->status }}
+                        </span>
+                    </td>
                     <td>{{ $task->priority }}</td>
                     <td>{{ $task->scheduled_for_date }}</td>
                     <td>
+                        <!-- زر تعديل -->
                         <a href="{{ route('team_leader.tasks.edit', $task->id) }}" class="btn btn-sm btn-warning">تعديل</a>
                     
                         <!-- زر حذف المهمة -->

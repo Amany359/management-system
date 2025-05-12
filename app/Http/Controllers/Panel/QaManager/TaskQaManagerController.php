@@ -23,8 +23,8 @@ class TaskQAManagerController extends Controller
     // فلترة المهام
     $tasks = $this->taskQAManagerService->filterTasks($request);
 
-    // جلب المستخدمين
-    $users = \App\Models\User::all();
+    // جلب المستخدمين الذين لهم دور "tester" فقط
+    $users = \App\Models\User::where('role', 'tester')->get();
 
     return view('panel.qa_manager.tasks.index', compact('tasks', 'users'));
 }
