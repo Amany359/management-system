@@ -33,7 +33,7 @@ class LoginController extends Controller
     {
         return match($role) {
             'team_leader' => '/team-leader/dashboard',
-            'admin_manager' => route('admin_manager.tasks.index'),
+            'admin_manager' => route('admin_manager.dashboard'),
             'programmer' => '/programmer/dashboard',
             'tester' => '/programmer/dashboard',
             'qa_manager' => '/qa-manager/dashboard',

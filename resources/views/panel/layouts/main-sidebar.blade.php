@@ -46,7 +46,7 @@
     <li class="menu-item">
       <a href="{{ route('programmer.dashboard') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-code"></i>
-        <div class="text-truncate">المبرمج</div>
+        <div class="text-truncate">المبرمج/التستر </div>
       </a>
     </li>
 
@@ -65,6 +65,12 @@
         <div class="text-truncate">مدير الإدارة</div>
       </a>
       <ul class="menu-sub">
+         <li class="menu-item">
+          <a href="{{ route('admin_manager.dashboard') }}" class="menu-link">
+            <div class="text-truncate">رؤية كل المهام</div>
+          </a>
+        </li>
+
         <li class="menu-item">
           <a href="{{ route('admin_manager.tasks.index') }}" class="menu-link">
             <div class="text-truncate">رؤية كل المهام</div>
