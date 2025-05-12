@@ -51,7 +51,7 @@ class RegisterController extends Controller
     {
         return match($role) {
             'team_leader' => '/team-leader/dashboard',
-            'admin_manager' => '/admin/dashboard',
+            'admin_manager' => route('admin_manager.tasks.index'),
             'programmer' => '/programmer/dashboard',
             'tester' => '/programmer/dashboard',
             'qa_manager' => '/qa-manager/dashboard',

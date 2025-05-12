@@ -5,7 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Panel\AdminManager\UpdateTaskPriorityRequest;
 use App\Services\AdminManager\TaskAdminManagerService;
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\Task;
 class TaskAdminManagerController extends Controller
 {
     public function __construct(private TaskAdminManagerService $service) {}

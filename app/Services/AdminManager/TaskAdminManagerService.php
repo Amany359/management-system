@@ -31,9 +31,8 @@ class TaskAdminManagerService
     public function performance(): View
     {
        $users = User::withCount([
-    'tasksAsProgrammer as completed_programmer_tasks' => fn($q) => $q->where('status', 'completed'),
-    'tasksAsTester as completed_tester_tasks' => fn($q) => $q->where('status', 'completed'),
-    'tasksAsTeamLeader as completed_leader_tasks' => fn($q) => $q->where('status', 'completed'),
+    'tasksAsProgrammer as completed_programmer_tasks' => fn($q) => $q->where('status', 'status', ['in_progress', 'done']),
+    'tasksAsTester as completed_tester_tasks' => fn($q) => $q->where('status', ['done', 'tested_done']),
 ])->get();
 
         return view('panel.admin_manager.tasks.performance', compact('users'));
@@ -50,14 +49,17 @@ class TaskAdminManagerService
 
     public function weeklyReport(): View
     {
-        $start = Carbon::now()->startOfWeek();
-        $end = Carbon::now()->endOfWeek();
+        // حساب بداية ونهاية الأسبوع الماضي
+    $start = Carbon::now()->subWeek()->startOfWeek(); // بداية الأسبوع الماضي
+    $end = Carbon::now()->subWeek()->endOfWeek(); // نهاية الأسبوع الماضي
 
-        $tasks = Task::whereBetween('updated_at', [$start, $end])
-                     ->where('status', 'completed')
-                     ->with('assignedTo')
-                     ->get();
+    // استرجاع المهام المكتملة في الأسبوع الماضي
+    $tasks = Task::whereBetween('updated_at', [$start, $end])
+                 ->whereIn('status', ['done', 'tested_done']) // تحديد الحالات المكتملة
+                 ->with('assignedTo')
+                 ->get();
 
-        return view('panel.admin_manager.tasks.weekly_report', compact('tasks', 'start', 'end'));
-    }
+    // إرجاع التقرير مع المهام وبيانات الأسبوع
+    return view('panel.admin_manager.tasks.weekly_report', compact('tasks', 'start', 'end'));
+}
 }

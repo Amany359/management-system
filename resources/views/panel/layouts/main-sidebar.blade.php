@@ -46,25 +46,15 @@
         <div class="text-truncate">المبرمج</div>
       </a>
     </li>
- 
-    
- 
 
-
-  
     <!-- Front Pages   teachers.index  subcategories countries -->
     
-       
-
     <li class="menu-item">
       <a href="{{ route('qa_manager.dashboard') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-task"></i>
         <div class="text-truncate">مدير الجودة</div>
       </a>
     </li>
-
-
-   
 <!-- قسم مدير الإدارة -->
 <li class="menu-item has-sub">
   <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -72,11 +62,7 @@
     <div class="text-truncate">مدير الإدارة</div>
   </a>
   <ul class="menu-sub">
-    <li class="menu-item">
-      <a href="{{ route('admin_manager.dashboard') }}" class="menu-link">
-        <div class="text-truncate">لوحة التحكم</div>
-      </a>
-    </li>
+    
     <li class="menu-item">
       <a href="{{ route('admin_manager.tasks.index') }}" class="menu-link">
         <div class="text-truncate">رؤية كل المهام</div>
