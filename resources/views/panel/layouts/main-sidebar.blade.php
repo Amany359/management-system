@@ -13,6 +13,16 @@
   </div>
 
   <div class="menu-inner-shadow"></div>
+<li class="menu-item">
+  <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-log-out"></i>
+    <div class="text-truncate">تسجيل الخروج</div>
+  </a>
+</li>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
 
   <ul class="menu-inner py-1">
     <!-- Dashboards -->
@@ -36,7 +46,7 @@
         <div class="text-truncate">المبرمج</div>
       </a>
     </li>
-  </li>
+ 
     
  
 

@@ -22,13 +22,15 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         if (!Auth::check()) {
-            return redirect('/login');
+            return redirect('/login')->with('error', 'يرجى تسجيل الدخول أولاً.');
         }
 
-        $user = Auth::user();
+       $user = Auth::user();
 
+        // إذا كان الدور غير موجود ضمن الأدوار المسموح لها
         if (!in_array($user->role, $roles)) {
-            abort(403, 'Unauthorized action.');
+            Auth::logout(); // تسجيل الخروج
+            return redirect('/login')->with('error', 'يرجى تسجيل الدخول بصلاحيات مناسبة.');
         }
 
         return $next($request);
