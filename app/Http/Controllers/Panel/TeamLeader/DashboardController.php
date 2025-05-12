@@ -18,6 +18,6 @@ class DashboardController extends Controller
     public function index()
     {
         $tasks = Task::where('team_leader_id', auth()->id())->get();
-        return view('panel.team-leader.dashboard', compact('tasks'));
+        return view('panel.team-leader.tasks.index', compact('tasks'));
     }
 }

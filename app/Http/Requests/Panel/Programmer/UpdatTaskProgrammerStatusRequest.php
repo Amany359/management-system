@@ -20,9 +20,18 @@ class UpdatTaskProgrammerStatusRequest extends FormRequest
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
+    
     {
         return [
-            'status' => 'required|in:start,finish',
+            'status' => 'required|string|in:approved,in_progress,done,in_testing,tested_done,needs_fix',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'status.required' => 'يرجى تحديد الحالة الجديدة.',
+            'status.in' => 'الحالة المحددة غير صالحة.',
         ];
     }
 }

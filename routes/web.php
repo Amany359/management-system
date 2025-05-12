@@ -44,10 +44,9 @@ Route::prefix('team-leader')->middleware(['auth', 'role:team_leader'])->name('te
 Route::prefix('programmer')->middleware(['auth', 'role:programmer,tester'])->name('programmer.')->group(function () {
     Route::get('/dashboard', [DashboardProgrammerController::class, 'index'])->name('dashboard');
     Route::get('tasks', [TaskProgrammerController::class, 'index'])->name('tasks.index');
-    Route::put('tasks/{task}/update-status', [TaskProgrammerController::class, 'updateStatus'])->name('tasks.updateStatus');
+    Route::put('tasks/{id}/update-status', [TaskProgrammerController::class, 'updateStatus'])->name('tasks.updateStatus');
+
 });
-
-
 
 
 

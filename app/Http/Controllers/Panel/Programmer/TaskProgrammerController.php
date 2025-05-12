@@ -24,9 +24,16 @@ class TaskProgrammerController extends Controller
     return view('panel.programmer.tasks.index', compact('tasks'));
 }
 
-    public function updateStatus(UpdatTaskProgrammerStatusRequest $request, $taskId)
-    {
-        $this->taskService->updateStatus($taskId, $request->status);
-        return back()->with('success', 'Task status updated.');
-    }
+public function updateStatus(UpdatTaskProgrammerStatusRequest $request, $taskId)
+{
+    $task = Task::findOrFail($taskId);
+    $user = auth()->user();
+    $role = session('active_role');
+    $newStatus = $request->input('status');
+
+    $message = $this->taskService->updateStatus($task, $newStatus, $user, $role);
+
+    return redirect()->back()->with('status_message', $message);
+}
+
 }
